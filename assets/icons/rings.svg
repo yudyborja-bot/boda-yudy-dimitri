@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+    <defs>
+        <!-- Gold metallic gradient -->
+        <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FDF8ED" />
+            <stop offset="25%" stop-color="#D4AF37" />
+            <stop offset="50%" stop-color="#FFF5E1" />
+            <stop offset="75%" stop-color="#C5A059" />
+            <stop offset="100%" stop-color="#8C6222" />
+        </linearGradient>
+        
+        <!-- Diamond gradient -->
+        <linearGradient id="diamond" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" />
+            <stop offset="100%" stop-color="#D1E8E2" />
+        </linearGradient>
+        
+        <!-- Mask for right ring (goes under at bottom) -->
+        <mask id="cutout">
+            <rect x="0" y="0" width="200" height="120" fill="white" />
+            <circle cx="105" cy="85" r="5.5" fill="black" />
+        </mask>
+        
+        <!-- Mask for left ring (goes under at top) -->
+        <mask id="cutout-left">
+            <rect x="0" y="0" width="200" height="120" fill="white" />
+            <circle cx="95" cy="35" r="5.5" fill="black" />
+        </mask>
+
+        <!-- Animation for the diamond sparkle -->
+        <style>
+            .ring-main {
+                fill: none;
+                stroke: url(#gold);
+                stroke-width: 2.5;
+            }
+            .ring-inner {
+                fill: none;
+                stroke: url(#gold);
+                stroke-width: 0.75;
+                opacity: 0.8;
+            }
+            .sparkle {
+                fill: #FFFFFF;
+                animation: glimmer 3s ease-in-out 1 forwards;
+                opacity: 0;
+                transform-origin: 108px 19px;
+            }
+            @keyframes glimmer {
+                0% { transform: scale(0) rotate(0deg); opacity: 0; }
+                20% { transform: scale(0.2) rotate(15deg); opacity: 0; }
+                50% { transform: scale(1.6) rotate(45deg); opacity: 1; }
+                100% { transform: scale(1) rotate(90deg); opacity: 0.85; }
+            }
+        </style>
+    </defs>
+
+    <!-- Subtle drop shadow/glow for elegance -->
+    <ellipse cx="75" cy="65" rx="36" ry="36" fill="none" stroke="#C5A059" stroke-width="8" opacity="0.05" />
+    <ellipse cx="125" cy="55" rx="36" ry="36" fill="none" stroke="#C5A059" stroke-width="8" opacity="0.05" />
+
+    <!-- Right Ring (Engagement Ring) -->
+    <ellipse cx="125" cy="55" rx="36" ry="36" class="ring-main" mask="url(#cutout)" />
+    <ellipse cx="125" cy="55" rx="32" ry="32" class="ring-inner" mask="url(#cutout)" />
+    
+    <!-- Left Ring (Band) -->
+    <ellipse cx="75" cy="65" rx="36" ry="36" class="ring-main" mask="url(#cutout-left)" />
+    <ellipse cx="75" cy="65" rx="32" ry="32" class="ring-inner" mask="url(#cutout-left)" />
+    
+    <!-- Diamond and Setting (Translated to sit precisely on the top right edge) -->
+    <g transform="translate(42, 6)">
+        <!-- Gold setting prongs -->
+        <path d="M 104 22 L 112 22 L 110 29 L 106 29 Z" fill="url(#gold)" />
+        
+        <!-- Diamond main shape -->
+        <polygon points="108,16 115,21 108,27 101,21" fill="url(#diamond)" stroke="#9C7735" stroke-width="0.5" />
+        
+        <!-- Diamond top facet reflection -->
+        <polygon points="108,16 111,21 108,23 105,21" fill="#FFFFFF" opacity="0.9" />
+        
+        <!-- Diamond subtle side facets -->
+        <polygon points="101,21 105,21 108,27" fill="#E6F2F5" opacity="0.6" />
+        <polygon points="115,21 111,21 108,27" fill="#B0D5DF" opacity="0.6" />
+        
+        <!-- Sparkle Effect Overlay -->
+        <g class="sparkle">
+            <path d="M 108 9 L 109 18 L 118 19 L 109 20 L 108 29 L 107 20 L 98 19 L 107 18 Z" />
+            <circle cx="108" cy="19" r="1.5" fill="#FFFFFF" />
+        </g>
+    </g>
+</svg>

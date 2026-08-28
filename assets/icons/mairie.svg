@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="200" height="150">
+    <!-- Ground -->
+    <line x1="20" y1="140" x2="180" y2="140" stroke="#1A3622" stroke-width="1"/>
+    
+    <!-- Central Building -->
+    <rect x="65" y="50" width="70" height="90" fill="none" stroke="#1A3622" stroke-width="1.5"/>
+    
+    <!-- Side wings -->
+    <rect x="35" y="70" width="30" height="70" fill="none" stroke="#1A3622" stroke-width="1"/>
+    <rect x="135" y="70" width="30" height="70" fill="none" stroke="#1A3622" stroke-width="1"/>
+    
+    <!-- Roofs -->
+    <polygon points="65,50 100,20 135,50" fill="none" stroke="#1A3622" stroke-width="1.5"/>
+    <polygon points="35,70 50,45 65,70" fill="none" stroke="#1A3622" stroke-width="1"/>
+    <polygon points="135,70 150,45 165,70" fill="none" stroke="#1A3622" stroke-width="1"/>
+    
+    <!-- Flag / Top decoration -->
+    <line x1="100" y1="20" x2="100" y2="5" stroke="#C5A059" stroke-width="1"/>
+    <polygon points="100,5 115,8 100,11" fill="#C5A059"/>
+
+    <!-- Clock -->
+    <circle cx="100" cy="40" r="5" fill="none" stroke="#C5A059" stroke-width="1"/>
+    
+    <!-- Windows - Center -->
+    <rect x="75" y="65" width="15" height="25" fill="none" stroke="#C5A059" stroke-width="1"/>
+    <rect x="110" y="65" width="15" height="25" fill="none" stroke="#C5A059" stroke-width="1"/>
+    
+    <!-- Door -->
+    <path d="M 90 140 L 90 105 A 10 10 0 0 1 110 105 L 110 140" fill="none" stroke="#1A3622" stroke-width="1.5"/>
+    
+    <!-- Side Windows -->
+    <rect x="42" y="85" width="15" height="20" fill="none" stroke="#C5A059" stroke-width="1"/>
+    <rect x="142" y="85" width="15" height="20" fill="none" stroke="#C5A059" stroke-width="1"/>
+    <rect x="42" y="110" width="15" height="20" fill="none" stroke="#C5A059" stroke-width="1"/>
+    <rect x="142" y="110" width="15" height="20" fill="none" stroke="#C5A059" stroke-width="1"/>
+</svg>

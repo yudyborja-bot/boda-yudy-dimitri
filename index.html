@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yudy & Dimitri - Boda / Mariage</title>
+    <!-- Enlace al archivo de estilos CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Fuentes de Google: Playfair Display (elegante) y Lato (legible) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- MENÚ SUPERIOR (Selector de idioma) -->
+    <header class="header">
+        <div class="lang-selector">
+            <button id="btn-es" class="lang-btn active">ES</button>
+            <span class="lang-divider">|</span>
+            <button id="btn-fr" class="lang-btn">FR</button>
+        </div>
+    </header>
+
+    <!-- SECCIÓN PORTADA (Hero) -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1 class="names">
+                <span class="name-line">Yudy</span>
+                <span class="ampersand">&amp;</span>
+                <span class="name-line">Dimitri</span>
+            </h1>
+            <img src="assets/icons/rings.svg" alt="Anillos" class="decorative-icon rings-hero">
+            <p class="date" data-i18n="date_hero">24 de diciembre de 2026</p>
+            
+            <!-- Imagen principal -->
+            <div class="hero-image-container">
+                <img src="assets/images/hero/hero.jpeg.jpeg" alt="Yudy y Dimitri" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CUENTA ATRÁS -->
+    <section class="countdown-section">
+        <h2 data-i18n="countdown_title">Faltan</h2>
+        <div class="countdown-container" id="countdown">
+            <div class="time-box">
+                <span id="days" class="number">00</span>
+                <span class="label" data-i18n="days">Días</span>
+            </div>
+            <div class="time-box">
+                <span id="hours" class="number">00</span>
+                <span class="label" data-i18n="hours">Horas</span>
+            </div>
+            <div class="time-box">
+                <span id="minutes" class="number">00</span>
+                <span class="label" data-i18n="minutes">Minutos</span>
+            </div>
+            <div class="time-box">
+                <span id="seconds" class="number">00</span>
+                <span class="label" data-i18n="seconds">Segundos</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN INFORMACIÓN DEL EVENTO -->
+    <section class="info-section">
+        <div class="info-card">
+            <img src="assets/icons/mairie.svg" alt="Mairie" class="decorative-icon mairie-icon">
+            <h2 data-i18n="ceremony_title">Ceremonia Civil</h2>
+            <p class="time">11:30</p>
+            <p class="location">Mairie de Dol-de-Bretagne</p>
+            <p class="address">35120, Francia</p>
+            
+            <a href="https://www.google.com/maps/search/?api=1&query=Mairie+de+Dol-de-Bretagne,+1+Grande+Rue,+35120+Dol-de-Bretagne,+France" target="_blank" class="btn-maps" data-i18n="open_maps">Ver en Google Maps</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN GALERÍA -->
+    <section class="gallery-section">
+        <img src="assets/icons/leaves.svg" alt="Detalle botánico" class="decorative-icon leaves-icon">
+        <h2 data-i18n="gallery_title">Nuestros Momentos</h2>
+        <div class="gallery-grid">
+            <!-- Fotografías -->
+            <img src="assets/images/gallery/moment1.jpeg.jpeg" alt="Yudy y Dimitri" class="gallery-img">
+            <img src="assets/images/gallery/moment2.jpg.jpg" alt="Yudy, Dimitri y nuestro hijo" class="gallery-img">
+            <img src="assets/images/gallery/moment3.jpeg.jpeg" alt="Yudy y Dimitri" class="gallery-img">
+        </div>
+    </section>
+
+    <!-- SECCIÓN RSVP (Confirmación) -->
+    <section class="rsvp-section">
+        <div class="separator-container">
+            <hr class="elegant-line">
+            <img src="assets/icons/rings.svg" alt="Anillos" class="separator-icon">
+            <hr class="elegant-line">
+        </div>
+        <h2 data-i18n="rsvp_title">Confirmar Asistencia</h2>
+        <p class="rsvp-text" data-i18n="rsvp_text">Nos encantaría compartir este momento tan especial con ustedes. Por favor, confírmanos tu asistencia aquí abajo antes del 1 de noviembre.</p>
+        
+        <form id="rsvp-form" class="rsvp-form">
+            <div class="form-group">
+                <label for="name" data-i18n="form_name">Nombre y Apellidos</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="attendance" data-i18n="form_attendance">¿Asistirás a la ceremonia?</label>
+                <select id="attendance" name="attendance" required>
+                    <option value="" disabled selected data-i18n="form_select_option">Selecciona una opción</option>
+                    <option value="yes" data-i18n="form_yes">Sí, asistiré</option>
+                    <option value="no" data-i18n="form_no">No podré asistir</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="guests" data-i18n="form_guests">Número de personas que asistirán</label>
+                <input type="number" id="guests" name="guests" min="1" max="10">
+            </div>
+
+            <div class="form-group">
+                <label for="comment" data-i18n="form_comment">Comentario (opcional)</label>
+                <textarea id="comment" name="comment" rows="3" placeholder="..." data-i18n-placeholder="form_comment_placeholder"></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit" data-i18n="form_submit">Enviar confirmación</button>
+            <p id="form-message" class="form-message hidden"></p>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>Yudy & Dimitri | 2026</p>
+    </footer>
+
+    <!-- Enlaces a los archivos JavaScript -->
+    <script src="js/content.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
