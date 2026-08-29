@@ -449,3 +449,44 @@ h1, h2, h3 {
         min-width: 100px;
     }
 }
+/* ==========================================================================
+   BOTÓN DE MÚSICA
+   ========================================================================== */
+
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--color-verde-oscuro);
+    color: var(--color-dorado);
+    border: 2px solid var(--color-dorado);
+    border-radius: 50%;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    touch-action: manipulation;
+}
+
+.music-toggle:hover {
+    background-color: var(--color-dorado);
+    color: var(--color-verde-oscuro);
+    transform: scale(1.08);
+}
+
+.music-toggle:active {
+    transform: scale(0.95);
+}
