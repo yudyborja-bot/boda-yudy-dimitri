@@ -162,5 +162,20 @@ document.addEventListener("DOMContentLoaded", () => {
             submitBtn.innerText = translations[currentLang].form_submit || originalBtnText;
         }
     });
+// --- 4. MÚSICA DE LA BODA ---
 
+    const music = document.getElementById('wedding-music');
+    const musicToggle = document.getElementById('music-toggle');
+
+    musicToggle.addEventListener('click', () => {
+        if (music.paused) {
+            music.play();
+            musicToggle.innerText = '🔊';
+            musicToggle.setAttribute('aria-label', 'Pausar música');
+        } else {
+            music.pause();
+            musicToggle.innerText = '🎵';
+            musicToggle.setAttribute('aria-label', 'Activar música');
+        }
+    });
 });
