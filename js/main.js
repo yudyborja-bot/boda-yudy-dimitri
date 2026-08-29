@@ -3,200 +3,419 @@
 // ==========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- 1. SISTEMA DE IDIOMAS ---
-    
-    const btnEs = document.getElementById('btn-es');
-    const btnFr = document.getElementById('btn-fr');
-    let currentLang = 'es'; // Idioma por defecto
+
+    // ======================================================================
+    // 1. SISTEMA DE IDIOMAS
+    // ======================================================================
+
+    const btnEs = document.getElementById("btn-es");
+    const btnFr = document.getElementById("btn-fr");
+
+    let currentLang = "es";
 
     function changeLanguage(lang) {
-        currentLang = lang;
-        
-        // Actualizar botones visualmente
-        if (lang === 'es') {
-            btnEs.classList.add('active');
-            btnFr.classList.remove('active');
-        } else {
-            btnFr.classList.add('active');
-            btnEs.classList.remove('active');
+
+        if (!translations[lang]) {
+            return;
         }
 
-        // Buscar todos los elementos que tienen el atributo data-i18n
-        const elements = document.querySelectorAll('[data-i18n]');
-        
-        elements.forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang] && translations[lang][key]) {
-                el.innerText = translations[lang][key];
+        currentLang = lang;
+
+        // Actualizar botones
+        btnEs.classList.toggle("active", lang === "es");
+        btnFr.classList.toggle("active", lang === "fr");
+
+        // Traducir textos
+        const elements = document.querySelectorAll("[data-i18n]");
+
+        elements.forEach((element) => {
+            const key = element.getAttribute("data-i18n");
+
+            if (translations[lang][key] !== undefined) {
+                element.textContent = translations[lang][key];
             }
         });
 
-        // Cambiar también los placeholders (textos fantasma de los inputs)
-        const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
-        placeholders.forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            if (translations[lang] && translations[lang][key]) {
-                el.placeholder = translations[lang][key];
+        // Traducir placeholders
+        const placeholders = document.querySelectorAll(
+            "[data-i18n-placeholder]"
+        );
+
+        placeholders.forEach((element) => {
+            const key = element.getAttribute("data-i18n-placeholder");
+
+            if (translations[lang][key] !== undefined) {
+                element.placeholder = translations[lang][key];
             }
         });
+
+        // Actualizar idioma del documento
+        document.documentElement.lang = lang;
     }
 
-    // Escuchar clics en los botones de idioma
-    btnEs.addEventListener('click', () => changeLanguage('es'));
-    btnFr.addEventListener('click', () => changeLanguage('fr'));
+    // Botones de idioma
+    btnEs.addEventListener("click", (event) => {
+        event.stopPropagation();
+        changeLanguage("es");
+    });
 
-    // Inicializar idioma por defecto al cargar
-    changeLanguage(currentLang);
+    btnFr.addEventListener("click", (event) => {
+        event.stopPropagation();
+        changeLanguage("fr");
+    });
 
-    // --- 2. CUENTA ATRÁS ---
-    
-    // Fecha de la boda: Año, Mes (0-11, así que 11 es diciembre), Día, Hora, Minutos
-    // 24 Dic 2026, 11:30
-    const weddingDate = new Date(2026, 11, 24, 11, 30, 0).getTime();
+    // Idioma inicial
+    changeLanguage("es");
+
+
+    // ======================================================================
+    // 2. CUENTA ATRÁS
+    // ======================================================================
+
+    const weddingDate = new Date(
+        2026,
+        11,
+        24,
+        11,
+        30,
+        0
+    ).getTime();
 
     function updateCountdown() {
+
         const now = new Date().getTime();
         const distance = weddingDate - now;
 
         if (distance < 0) {
-            // Si la fecha ya pasó
-            document.getElementById("countdown").innerHTML = "<div class='time-box'><span class='number'>¡Llegó el día!</span></div>";
+
+            document.getElementById("countdown").innerHTML =
+                "<div class='time-box'>" +
+                "<span class='number'>¡Llegó el día!</span>" +
+                "</div>";
+
             return;
         }
 
-        // Cálculos matemáticos de tiempo
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const days = Math.floor(
+            distance / (1000 * 60 * 60 * 24)
+        );
 
-        // Actualizar el HTML añadiendo un cero delante si es menor a 10
-        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        const hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+
+        const minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+
+        const seconds = Math.floor(
+            (distance % (1000 * 60)) /
+            1000
+        );
+
+        document.getElementById("days").textContent =
+            days < 10 ? "0" + days : days;
+
+        document.getElementById("hours").textContent =
+            hours < 10 ? "0" + hours : hours;
+
+        document.getElementById("minutes").textContent =
+            minutes < 10 ? "0" + minutes : minutes;
+
+        document.getElementById("seconds").textContent =
+            seconds < 10 ? "0" + seconds : seconds;
     }
 
-    // Actualizar cada segundo
+    updateCountdown();
     setInterval(updateCountdown, 1000);
-    updateCountdown(); // Llamada inicial
 
 
-    // --- 3. FORMULARIO RSVP (CONEXIÓN Y GESTIÓN DE RESPUESTAS) ---
-    
-    const rsvpForm = document.getElementById('rsvp-form');
-    const formMessage = document.getElementById('form-message');
-    const submitBtn = rsvpForm.querySelector('.btn-submit');
+    // ======================================================================
+    // 3. FORMULARIO RSVP
+    // ======================================================================
 
-    rsvpForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        // Ocultar mensajes previos
-        formMessage.className = 'form-message hidden';
-        
-        // Recoger y formatear datos según los requisitos exactos
-        const nameInput = document.getElementById('name');
-        const attendanceInput = document.getElementById('attendance');
-        const guestsInput = document.getElementById('guests');
-        const commentInput = document.getElementById('comment');
+    const rsvpForm = document.getElementById("rsvp-form");
+    const formMessage = document.getElementById("form-message");
+    const submitBtn = rsvpForm.querySelector(".btn-submit");
 
-        const isAttending = attendanceInput.value === 'yes';
+    rsvpForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        formMessage.className = "form-message hidden";
+
+        const nameInput = document.getElementById("name");
+        const attendanceInput = document.getElementById("attendance");
+        const guestsInput = document.getElementById("guests");
+        const commentInput = document.getElementById("comment");
+
+        const isAttending = attendanceInput.value === "yes";
+
         let numGuests = 0;
+
         if (isAttending) {
-            const parsed = parseInt(guestsInput.value, 10);
-            numGuests = (!isNaN(parsed) && parsed > 0) ? parsed : 1;
+
+            const parsed = parseInt(
+                guestsInput.value,
+                10
+            );
+
+            numGuests =
+                !isNaN(parsed) && parsed > 0
+                    ? parsed
+                    : 1;
         }
 
         const payload = {
+
             nombre: nameInput.value.trim(),
-            asistencia: isAttending ? "si" : "no",
+
+            asistencia: isAttending
+                ? "si"
+                : "no",
+
             personas: numGuests,
+
             comentario: commentInput.value.trim(),
-            idioma: currentLang.toLowerCase()
+
+            idioma: currentLang
         };
 
-        // Estado de carga visual en el botón
         const originalBtnText = submitBtn.innerText;
+
         submitBtn.disabled = true;
-        submitBtn.innerText = translations[currentLang].form_loading || "Enviando...";
+
+        submitBtn.innerText =
+            translations[currentLang].form_loading ||
+            "Enviando...";
 
         try {
-            if (!weddingConfig || !weddingConfig.rsvpEndpoint || weddingConfig.rsvpEndpoint.trim() === '') {
-                throw new Error("Endpoint no configurado en weddingConfig");
+
+            if (
+                !weddingConfig ||
+                !weddingConfig.rsvpEndpoint ||
+                weddingConfig.rsvpEndpoint.trim() === ""
+            ) {
+                throw new Error(
+                    "Endpoint no configurado"
+                );
             }
 
-            // Enviar petición POST con JSON como text/plain para compatibilidad CORS con Google Apps Script
-            const response = await fetch(weddingConfig.rsvpEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'text/plain;charset=utf-8'
-                },
-                body: JSON.stringify(payload)
-            });
+            const response = await fetch(
+                weddingConfig.rsvpEndpoint,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+                    },
+
+                    body: JSON.stringify(payload)
+                }
+            );
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(
+                    `HTTP error! status: ${response.status}`
+                );
             }
 
             const data = await response.json();
 
-            // Solo mostrar éxito si la respuesta devuelve explícitamente { "success": true }
             if (data && data.success === true) {
-                const successMsg = isAttending
-                    ? translations[currentLang].form_success_yes
-                    : translations[currentLang].form_success_no;
-                formMessage.innerText = successMsg;
-                formMessage.className = 'form-message success';
+
+                const successMsg =
+                    isAttending
+                        ? translations[currentLang]
+                            .form_success_yes
+                        : translations[currentLang]
+                            .form_success_no;
+
+                formMessage.innerText =
+                    successMsg;
+
+                formMessage.className =
+                    "form-message success";
+
                 rsvpForm.reset();
+
             } else {
-                throw new Error("El endpoint no confirmó el guardado ({ success: true })");
+
+                throw new Error(
+                    "El endpoint no confirmó el guardado"
+                );
             }
+
         } catch (error) {
-            console.error("Error en la conexión con el RSVP:", error);
-            formMessage.innerText = translations[currentLang].form_error_msg;
-            formMessage.className = 'form-message error';
+
+            console.error(
+                "Error en RSVP:",
+                error
+            );
+
+            formMessage.innerText =
+                translations[currentLang]
+                    .form_error_msg;
+
+            formMessage.className =
+                "form-message error";
+
         } finally {
-            // Restaurar botón para permitir volver a intentarlo si hubo error
+
             submitBtn.disabled = false;
-            submitBtn.innerText = translations[currentLang].form_submit || originalBtnText;
+
+            submitBtn.innerText =
+                translations[currentLang]
+                    .form_submit ||
+                originalBtnText;
         }
     });
-// --- 4. MÚSICA DE LA BODA ---
 
-    const music = document.getElementById('wedding-music');
-const musicToggle = document.getElementById('music-toggle');
 
-// Intentar reproducir automáticamente al abrir la invitación
-music.play().then(() => {
-    musicToggle.innerText = '🔊';
-    musicToggle.setAttribute('aria-label', 'Pausar música');
-}).catch(() => {
-    // El navegador puede bloquear el autoplay
-});
+    // ======================================================================
+    // 4. MÚSICA DE LA BODA
+    // ======================================================================
 
-// Si el navegador bloqueó el autoplay,
-// la música comenzará al primer toque en la invitación
-document.addEventListener('click', () => {
-    if (music.paused) {
-        music.play().then(() => {
-            musicToggle.innerText = '🔊';
-            musicToggle.setAttribute('aria-label', 'Pausar música');
-        }).catch(() => {});
+    const music =
+        document.getElementById("wedding-music");
+
+    const musicToggle =
+        document.getElementById("music-toggle");
+
+
+    // ----------------------------------------------------------------------
+    // Actualizar visualmente el botón
+    // ----------------------------------------------------------------------
+
+    function updateMusicButton() {
+
+        if (music.paused) {
+
+            musicToggle.textContent = "🎵";
+
+            musicToggle.setAttribute(
+                "aria-label",
+                "Activar música"
+            );
+
+        } else {
+
+            musicToggle.textContent = "🔊";
+
+            musicToggle.setAttribute(
+                "aria-label",
+                "Pausar música"
+            );
+        }
     }
-}, { once: true });
 
-// Botón para pausar/reanudar la música
-musicToggle.addEventListener('click', (event) => {
-    event.stopPropagation();
 
-    if (music.paused) {
-        music.play();
-        musicToggle.innerText = '🔊';
-        musicToggle.setAttribute('aria-label', 'Pausar música');
-    } else {
-        music.pause();
-        musicToggle.innerText = '🎵';
-        musicToggle.setAttribute('aria-label', 'Activar música');
+    // ----------------------------------------------------------------------
+    // Reproducir música
+    // ----------------------------------------------------------------------
+
+    function playMusic() {
+
+        const promise = music.play();
+
+        if (promise !== undefined) {
+
+            promise
+                .then(() => {
+                    updateMusicButton();
+                })
+                .catch((error) => {
+
+                    console.log(
+                        "Autoplay bloqueado por el navegador:",
+                        error
+                    );
+
+                    updateMusicButton();
+                });
+
+        } else {
+
+            updateMusicButton();
+        }
     }
+
+
+    // ----------------------------------------------------------------------
+    // Intentar autoplay al abrir
+    // ----------------------------------------------------------------------
+
+    playMusic();
+
+
+    // ----------------------------------------------------------------------
+    // Primer toque/clic en la página
+    // ----------------------------------------------------------------------
+
+    function firstInteraction() {
+
+        if (music.paused) {
+            playMusic();
+        }
+
+        document.removeEventListener(
+            "pointerdown",
+            firstInteraction
+        );
+    }
+
+    document.addEventListener(
+        "pointerdown",
+        firstInteraction
+    );
+
+
+    // ----------------------------------------------------------------------
+    // Botón de música
+    // ----------------------------------------------------------------------
+
+    musicToggle.addEventListener(
+        "click",
+        (event) => {
+
+            event.stopPropagation();
+
+            if (music.paused) {
+
+                playMusic();
+
+            } else {
+
+                music.pause();
+
+                updateMusicButton();
+            }
+        }
+    );
+
+
+    // ----------------------------------------------------------------------
+    // Si el navegador cambia el estado del audio
+    // ----------------------------------------------------------------------
+
+    music.addEventListener(
+        "play",
+        updateMusicButton
+    );
+
+    music.addEventListener(
+        "pause",
+        updateMusicButton
+    );
+
+    music.addEventListener(
+        "ended",
+        updateMusicButton
+    );
+
+    updateMusicButton();
+
 });
