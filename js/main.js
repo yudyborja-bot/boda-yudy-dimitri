@@ -165,17 +165,38 @@ document.addEventListener("DOMContentLoaded", () => {
 // --- 4. MÚSICA DE LA BODA ---
 
     const music = document.getElementById('wedding-music');
-    const musicToggle = document.getElementById('music-toggle');
+const musicToggle = document.getElementById('music-toggle');
 
-    musicToggle.addEventListener('click', () => {
-        if (music.paused) {
-            music.play();
+// Intentar reproducir automáticamente al abrir la invitación
+music.play().then(() => {
+    musicToggle.innerText = '🔊';
+    musicToggle.setAttribute('aria-label', 'Pausar música');
+}).catch(() => {
+    // El navegador puede bloquear el autoplay
+});
+
+// Si el navegador bloqueó el autoplay,
+// la música comenzará al primer toque en la invitación
+document.addEventListener('click', () => {
+    if (music.paused) {
+        music.play().then(() => {
             musicToggle.innerText = '🔊';
             musicToggle.setAttribute('aria-label', 'Pausar música');
-        } else {
-            music.pause();
-            musicToggle.innerText = '🎵';
-            musicToggle.setAttribute('aria-label', 'Activar música');
-        }
-    });
+        }).catch(() => {});
+    }
+}, { once: true });
+
+// Botón para pausar/reanudar la música
+musicToggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+
+    if (music.paused) {
+        music.play();
+        musicToggle.innerText = '🔊';
+        musicToggle.setAttribute('aria-label', 'Pausar música');
+    } else {
+        music.pause();
+        musicToggle.innerText = '🎵';
+        musicToggle.setAttribute('aria-label', 'Activar música');
+    }
 });
