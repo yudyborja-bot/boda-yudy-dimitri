@@ -24,6 +24,8 @@ const translations = {
         
         gallery_title: "Algunos momentos juntos",
         
+        hero_quote: "Un día de luz y de promesas",
+        
         rsvp_title: "Confirmar Asistencia",
         rsvp_text: "Nos encantaría compartir este momento tan especial con ustedes. Por favor, confírmanos tu asistencia aquí abajo antes del 1 de noviembre.",
         form_name: "Nombre y apellidos",
@@ -56,6 +58,8 @@ const translations = {
         
         gallery_title: "Quelques moments ensemble",
         
+        hero_quote: "Un jour de lumière et de promesses",
+
         rsvp_title: "Confirmation de présence",
         rsvp_text: "Nous serions très heureux de partager ce moment si spécial avec vous. Merci de nous confirmer votre présence juste ici avant le 1er novembre.",
         form_name: "Nom et prénom",
