@@ -25,7 +25,13 @@ const translations = {
         gallery_title: "Algunos momentos juntos",
         
         hero_quote: "Un día de luz y de promesas",
-        
+
+        intro_title: "Dos mundos, una misma promesa",
+intro_greeting: "Querida familia, queridos amigos,",
+intro_paragraph_1: "Hay momentos en la vida que cobran su verdadero significado cuando los compartimos con las personas que más queremos.",
+intro_paragraph_2: "Cruzar continentes y unir nuestras raíces es el inicio de nuestra mayor aventura juntos.",
+intro_paragraph_3: "Esperamos de todo corazón contar con su compañía y bendición en este día tan íntimo y especial.",
+
         rsvp_title: "Confirmar Asistencia",
         rsvp_text: "Nos encantaría compartir este momento tan especial con ustedes. Por favor, confírmanos tu asistencia aquí abajo antes del 1 de noviembre.",
         form_name: "Nombre y apellidos",
@@ -59,6 +65,12 @@ const translations = {
         gallery_title: "Quelques moments ensemble",
         
         hero_quote: "Un jour de lumière et de promesses",
+
+        intro_title: "Deux mondes, une même promesse",
+intro_greeting: "Chère famille, chers amis,",
+intro_paragraph_1: "Il est des moments précieux qui ne prennent tout leur sens que lorsqu’ils sont partagés avec ceux que nous chérissons.",
+intro_paragraph_2: "Entrelacer nos deux cultures et nos histoires est le début de notre plus beau voyage.",
+intro_paragraph_3: "Nous espérons de tout cœur célébrer ce jour si intime et cher à nos yeux à vos côtés.",
 
         rsvp_title: "Confirmation de présence",
         rsvp_text: "Nous serions très heureux de partager ce moment si spécial avec vous. Merci de nous confirmer votre présence juste ici avant le 1er novembre.",
