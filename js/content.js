@@ -24,7 +24,7 @@ const translations = {
         
         gallery_title: "Algunos momentos juntos",
         
-        hero_quote: "Un día de luz y de promesas",
+        hero_quote: "Algunas historias no necesitan explicación, solo celebración.",
 
         intro_title: "Dos mundos, una misma promesa",
 intro_greeting: "Querida familia, queridos amigos,",
@@ -64,7 +64,7 @@ intro_paragraph_3: "Esperamos de todo corazón contar con su compañía y bendic
         
         gallery_title: "Quelques moments ensemble",
         
-        hero_quote: "Un jour de lumière et de promesses",
+        hero_quote: "Certaines histoires n’ont pas besoin d’explication, seulement d’être célébrées.",
 
         intro_title: "Deux mondes, une même promesse",
 intro_greeting: "Chère famille, chers amis,",
