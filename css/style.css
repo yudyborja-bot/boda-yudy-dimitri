@@ -155,6 +155,179 @@ h1, h2, h3 {
     object-position: center;
     display: block;
 }
+/* ==========================================================================
+   CARTA DE BIENVENIDA
+   ========================================================================== */
+
+.intro-section {
+    width: 100%;
+    padding: 75px 20px 80px;
+    background-color: #A3ADA2;
+    text-align: center;
+}
+
+/* Hoja de la carta */
+.intro-content {
+    position: relative;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 70px 65px 65px;
+
+    background-color: #F3F0E8;
+
+    border: 1px solid rgba(197, 160, 89, 0.55);
+
+    box-shadow:
+        0 18px 35px rgba(26, 54, 34, 0.16),
+        0 3px 8px rgba(26, 54, 34, 0.08);
+
+    text-align: center;
+}
+
+/* Decoración de las esquinas */
+.intro-content::before,
+.intro-content::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    border-color: var(--color-dorado);
+    border-style: solid;
+    opacity: 0.65;
+}
+
+.intro-content::before {
+    top: 18px;
+    left: 18px;
+    border-width: 1px 0 0 1px;
+}
+
+.intro-content::after {
+    right: 18px;
+    bottom: 18px;
+    border-width: 0 1px 1px 0;
+}
+
+/* Adorno encima del título */
+.intro-title::before {
+    content: "❦";
+    display: block;
+    margin-bottom: 18px;
+
+    color: var(--color-dorado);
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* TÍTULO */
+.intro-title {
+    margin: 0 0 42px;
+
+    color: var(--color-verde-oscuro);
+    font-family: var(--fuente-titulos);
+    font-size: 2.7rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: 0.3px;
+}
+
+/* SALUDO */
+.intro-greeting {
+    margin: 0 0 30px;
+
+    color: var(--color-verde-oscuro);
+    font-family: var(--fuente-titulos);
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* TEXTO */
+.intro-content p:not(.intro-greeting):not(.intro-signature) {
+    max-width: 550px;
+    margin: 0 auto 25px;
+
+    color: #405047;
+    font-family: var(--fuente-titulos);
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.9;
+}
+
+/* FIRMA */
+.intro-signature {
+    margin: 45px 0 0;
+
+    color: var(--color-verde-oscuro);
+    font-family: var(--fuente-titulos);
+    font-size: 1.55rem;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+/* Pequeño detalle debajo de la firma */
+.intro-signature::after {
+    content: "✦";
+    display: block;
+    margin-top: 20px;
+
+    color: var(--color-dorado);
+    font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   CARTA EN MÓVIL
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    .intro-section {
+        padding: 50px 14px 55px;
+    }
+
+    .intro-content {
+        padding: 55px 28px 50px;
+    }
+
+    .intro-content::before {
+        top: 12px;
+        left: 12px;
+    }
+
+    .intro-content::after {
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .intro-title {
+        font-size: 2.05rem;
+        margin-bottom: 34px;
+    }
+
+    .intro-title::before {
+        font-size: 1.3rem;
+        margin-bottom: 14px;
+    }
+
+    .intro-greeting {
+        font-size: 1.15rem;
+        margin-bottom: 25px;
+    }
+
+    .intro-content p:not(.intro-greeting):not(.intro-signature) {
+        font-size: 0.98rem;
+        line-height: 1.85;
+        margin-bottom: 22px;
+    }
+
+    .intro-signature {
+        margin-top: 38px;
+        font-size: 1.4rem;
+    }
+}
 
 /* ==========================================================================
    CUENTA ATRÁS
